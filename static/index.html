@@ -6,21 +6,23 @@
     <style>
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #2e2e2e;
+    background-color: #222020;
     color: #e1e1e1;
 }
 table {
     border-collapse: collapse;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 th, td {
     border: 1px solid #444;
     padding: 8px 12px;
 }
 th {
-    background-color: #333;
+    background-color: #a10000;
     color: #fff;
+    /*opacity: 80%;*/
+    border: 2px solid black;
 }
 tr:hover {
     background-color: #3d3d3d;
@@ -52,7 +54,7 @@ tr:hover {
 .control-section {
     flex: 1;
     margin-right: 10px;
-    background: linear-gradient(to left, #4d4d4d, #3a3a3a);
+    background: linear-gradient(to left, #3a3a3a, #222020);
     padding: 10px;
     border-radius: 5px;
 }
@@ -67,25 +69,30 @@ tr:hover {
     border: 1px solid #444;
     padding: 10px;
     border-radius: 5px;
-    background-color: #3a3a3a;
+    background-color: #222020;
 }
 h2, h3 {
     border-bottom: 2px solid #555;
     padding-bottom: 10px;
 }
-h1 {
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+
 .top {
-    background: linear-gradient(to left,#b3b3b3, #3a3a3a);
-    padding: 20px 0;
-    margin-bottom: 20px;
+    background: white;
+    padding: 0px 0;
+    margin-bottom: 0px;
     border-bottom: 3px solid #555;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: inline-flex;
+    width: 100%;
+    
 }
 h1 {
-    margin: 0;
+    margin-left: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
     font-size: 24px;
-    color: #e1e1e1;
+    
 }
 button {
     background-color: #4a4a4a;
@@ -173,12 +180,81 @@ select {
    
     color: #FFEB3B;
 }
+#mainContainer {
+    display: flex;
+    align-items: flex-start;
+}
+#matrixContainer {
+    border-collapse: collapse;
+    width: 10px;
+}
+#matrixContainer td {
+    height: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+#matrixContainer td:hover {
+    background-color: #ccc;
+}
+.slider-container {
+  position: relative;
+  height: 300px; /* You can adjust this to fit your design */
+  width: 20px;
+  margin-left: 250px; /* Space between the matrix and the slider */
+  float: right;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 300px; /* Matching the height of the slider container */
+  margin: 0;
+  transform-origin: 150px 150px; /* Center of rotation */
+  transform: rotate(90deg) translateX(-150px);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #c40000;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: red;
+  cursor: pointer;
+}
+
+#sliderValue {
+  margin-top: -30px;  
+  margin-left: 280px;
+  align-self: center; /* Centers the value horizontally */
+}
+#sliderContainer {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#slider {
+    position: relative;
+    top: 170px; /* Adjust as needed */
+}
+
+
     </style>
     <title>Helm</title>
 </head>
 <body>
     <div class="top">
-        <h1>Helm Alpha v0.0.1</h1>
+        <img src="/static/logo.jpg" style="width:115px;height:100px;margin-left: 5px;margin-right: 5px;">
+        <!--<h1 style="text-align: right;color: #c40000;">Printers Online: </h1>-->
     </div>
     <table id="devicesTable" style="width:100%">
         <thead>
@@ -200,6 +276,23 @@ select {
     </table>
     <div class="flex-container">
         <div class="control-section">
+            <h2>Motion</h2>
+            <div id="mainContainer">
+                
+                <div id="matrixContainer">
+                    
+                </div>
+                
+                <div id="sliderContainer">
+                    <input type="range" min="0" max="600" value="0" class="slider" id="slider"/>
+                    <span id="sliderValue">0</span>
+                </div>
+                
+            </div>
+            <button id="homeAllButton">Home All</button>
+            <button id="setZ">Set Z Position</button>
+            </div>
+        <div class="control-section">
             <h2>Group Controls</h2>
             <div class="control-row">
                 <button id="toggleSelection">Select/Deselect All</button>
@@ -217,28 +310,19 @@ select {
             <button id="startPrint">Start Print</button>
         </div>
         </div>
-        <div class="control-section">
-            <h2>Power</h2>
-            <div class="control-row">
-                <h3>Raspberry Pi</h3>
-                <button id="toggleSelection">Reboot</button>
-                <button id="deselectAll">Shutdown</button>
-                <button id="restartDevices">Refresh</button>
-            </div>
-            <div class="control-row">
-                <h3>Firmware</h3>
-                <button id="firmwareRestart">Firmware Restart</button>
-                <button id="restart">Restart</button>
-                <button id="firmwareShutdown">Firmware Shutdown</button>
-            </div>
+        
         </div>
-    </div>
+        
     <div id="gcodeCommandsContainer">
         <h3></h3>
         <ul id="gcodeOutput">
         </ul>
     </div>
-
+    <script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
     <script src="/static/js/script.js"></script>
 </body>
 </html>
+
