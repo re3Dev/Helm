@@ -2,7 +2,8 @@
 
 *Note: VERY early in the development process. Not all functionality has been implemented.*
 
-![image](https://github.com/re3Dev/helm/assets/128167557/12a45dff-27f4-4c68-bb18-86a556c94223)
+![image](https://github.com/re3Dev/helm/assets/128167557/a6373905-e76b-4c00-aec6-2cde4cbf754a)![Screenshot 2023-10-11 100528]
+
 
 ## Table of Contents
 - [Overview](#overview)
