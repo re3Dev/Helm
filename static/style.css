@@ -1,0 +1,245 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #e1e1e1;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid #444;
+    padding: 8px 12px;
+    background-color: #ffffff;
+    color: black;
+}
+th {
+    background-color: #FFD400;
+    color: black;
+    /*opacity: 80%;*/
+    border: 2px solid black;
+    border-radius: 10px;
+}
+tr:hover {
+    background-color: #3d3d3d;
+}
+.clickable {
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 10px;
+    margin: 2px;
+    border: 1px solid #555;
+    border-radius: 3px;
+    background-color: #4a4a4a;
+    transition: background-color 0.3s;
+}
+.clickable:hover {
+    background-color: #5a5a5a;
+}
+.detail-info {
+    display: none;
+    margin-top: 5px;
+    padding: 5px;
+    border-top: 1px solid #444;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.control-section {
+    flex: 1;
+    margin-right: 10px;
+    background: linear-gradient(to left, #3a3a3a, #222020);
+    padding: 10px;
+    border-radius: 5px;
+}
+.control-row {
+    margin-bottom: 10px;
+}
+.control-row button {
+    margin-right: 10px;
+}
+#gcodeCommandsContainer {
+    margin-top: 20px;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #222020;
+}
+h2, h3 {
+    border-bottom: 2px solid #555;
+    padding-bottom: 10px;
+}
+
+.top {
+    background: black;
+    padding: 0px 0;
+    margin-bottom: 0px;
+    border-bottom: 3px solid #555;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: inline-flex;
+    width: 100%;
+    
+}
+h1 {
+    margin-left: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 24px;
+    
+}
+button {
+    background-color: #4a4a4a;
+    color: #e1e1e1;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #5a5a5a;
+}
+button:active {
+    background-color: #3a3a3a;
+}
+.btn-toggleSelection,
+.btn-deselectAll,
+.btn-restartDevices {   
+}
+#devicesTable a {
+    text-decoration: none;
+    color: #3498db;
+    transition: 0.3s;
+}
+#devicesTable a:hover {
+    color: #2980b9;
+}
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    outline: none;
+}
+#commandDropdown {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    width: 250px;
+    background-color: #333;
+    color: #ddd;
+    border: 1px solid #666;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#gcodeDropdown {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    width: 250px;
+    background-color: #333;  
+    color: #ddd;  
+    border: 1px solid #666;
+    border-radius: 4px;
+    cursor: pointer;  
+}
+#gcodeDropdown::-webkit-calendar-picker-indicator,
+#commandDropdown::-webkit-calendar-picker-indicator {
+    background: transparent;
+    color: #ddd;
+}
+#gcodeDropdown::-moz-calendar-picker-indicator,
+#commandDropdown::-moz-calendar-picker-indicator {
+    background: transparent;
+    color: #ddd;
+}
+#gcodeDropdown option:hover,
+#commandDropdown option:hover {
+    background-color: #555;
+    color: #eee;
+}
+#devicesTable td.status-ready {  
+    color: #4CAF50;
+}
+#devicesTable td.status-idle {  
+    color: #a6a6a6;
+}
+#devicesTable td.status-printing {
+   
+    color: #FFEB3B;
+}
+#mainContainer {
+    display: flex;
+    align-items: flex-start;
+}
+#matrixContainer {
+    border-collapse: collapse;
+    width: 10px;
+}
+#matrixContainer td {
+    height: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+#matrixContainer td:hover {
+    background-color: #ccc;
+}
+.slider-container {
+  position: relative;
+  height: 300px; /* You can adjust this to fit your design */
+  width: 20px;
+  margin-left: 250px; /* Space between the matrix and the slider */
+  float: right;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 300px; /* Matching the height of the slider container */
+  margin: 0;
+  transform-origin: 150px 150px; /* Center of rotation */
+  transform: rotate(90deg) translateX(-150px);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #FFD400;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #FFD400;
+  cursor: pointer;
+}
+
+#sliderValue {
+  margin-top: -30px;  
+  margin-left: 280px;
+  align-self: center; /* Centers the value horizontally */
+}
+#sliderContainer {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#slider {
+    position: relative;
+    top: 170px; /* Adjust as needed */
+}
