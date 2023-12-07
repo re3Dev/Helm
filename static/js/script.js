@@ -174,6 +174,39 @@ document.getElementById("fetchGcodeFilesBtn").addEventListener("click", function
         console.error("Error fetching GCode files:", error);
     });
 });
+const terminal = new Terminal();
+terminal.open(document.getElementById('terminal-container'));
+
+document.getElementById('executeSSHCommand').addEventListener('click', function() {
+    const command = 'ifconfig';
+    sendSSHCommand(command);
+});
+
+function sendSSHCommand(command) {
+    const data = {
+        hostname: '',
+        username: '',
+        password: '',
+        command: command
+    };
+
+    fetch('/ssh_command', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.output) {
+            terminal.write(data.output);
+        } else {
+            terminal.write('Error: ' + data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
 
 function populateDropdown(files) {
     const dropdown = document.getElementById('gcodeDropdown');

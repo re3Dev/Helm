@@ -48,6 +48,11 @@ tr:hover {
     justify-content: space-between;
     margin-top: 20px;
 }
+.flex-container2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
 .control-section {
     flex: 1;
     margin-right: 10px;

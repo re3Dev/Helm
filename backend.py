@@ -3,6 +3,7 @@ from scapy.all import ARP, Ether, srp
 from flask_cors import CORS
 import requests
 import threading
+import paramiko
 
 app = Flask(__name__)
 CORS(app)
@@ -121,3 +122,21 @@ def fetch_gcode_commands():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.route('/ssh_command', methods=['POST'])
+def ssh_command():
+    data = request.json
+    hostname = data['hostname']
+    username = data['username']
+    password = data['password']
+    command = data['command']
+
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(hostname, username=username, password=password)
+        stdin, stdout, stderr = ssh.exec_command(command)
+        output = stdout.read()
+        return {'output': output.decode()}
+    except Exception as e:
+        return {'error': str(e)}

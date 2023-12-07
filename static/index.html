@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Include xterm.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+<script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css"
@@ -31,6 +34,33 @@
         <tbody>
         </tbody>
     </table>
+    <div class="flex-container2">
+        <div class="control-section">
+            <h2>Software</h2>
+            <div class="control-row">
+                <button id="executeSSHCommand">Execute SSH Command</button>
+                <div id="terminal-container"></div>
+                
+            </div>
+        </div>
+        <div class="control-section">
+            <h2>Temperature</h2>
+            <div class="control-row">
+                <input id="tempInput">
+                <button id="setTemp">Set Temperature</button>
+                
+            </div>
+        </div>
+        <div class="control-section">
+            <h2>Power</h2>
+            <div class="control-row">
+                <button id="restart">Restart</button>
+                <button id="firmwareRestart">Firmware Restart</button>
+                <button id="reboot">Reboot</button>
+                <button id="shutdown">Shutdown</button>
+        </div>
+        </div>
+    </div>
     <div class="flex-container">
         <div class="control-section">
             <h2>Motion</h2>
