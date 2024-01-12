@@ -11,10 +11,14 @@
 </head>
 <body>
     <div class="top">
-        <img src="/static/images.jpg" style="width:115px;height:100px;margin-left: 5px;margin-right: 5px;">
+        <img src="/static/logo.jpg" style="width:115px;height:100px;margin-left: 5px;margin-right: 5px;">
         <!--<h1 style="text-align: right;color: #c40000;">Printers Online: </h1>-->
-        <a href="cameras.html"></a>
-        <button id="camButton">Cameras</button>
+        <div class="top-nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#services" class="nav-link">Cameras</a>
+            <a href="#about" class="nav-link">Print Status</a>
+            <a href="#contact" class="nav-link">Statistics</a>
+        </div>
     </div>
     <table id="devicesTable" style="width:100%">
         <thead>
@@ -44,20 +48,21 @@
             </div>
         </div>
         <div class="control-section">
-            <h2>Temperature</h2>
+            <h2>Group Controls</h2>
             <div class="control-row">
-                <input id="tempInput">
-                <button id="setTemp">Set Temperature</button>
-                
+                <button id="toggleSelection">Select/Deselect All</button>
+                <button id="deselectAll">Update Software</button>
+                <button id="restartDevices">Restart Selected Devices</button>
             </div>
-        </div>
-        <div class="control-section">
-            <h2>Power</h2>
             <div class="control-row">
-                <button id="restart">Restart</button>
-                <button id="firmwareRestart">Firmware Restart</button>
-                <button id="reboot">Reboot</button>
-                <button id="shutdown">Shutdown</button>
+                <button id="showGcodeCommandsBtn">Show GCODE Commands</button>
+                <select id="commandDropdown"></select>
+                <button id="runGcode">Run GCODE</button>
+            </div>
+        <div class="control-row">
+            <button id="fetchGcodeFilesBtn">List GCODE Files</button>
+            <select id="gcodeDropdown"></select>
+            <button id="startPrint">Start Print</button>
         </div>
         </div>
     </div>
@@ -79,28 +84,7 @@
             <button id="homeAllButton">Home All</button>
             <button id="setZ">Set Z Position</button>
             </div>
-        <div class="control-section">
-            <h2>Group Controls</h2>
-            <div class="control-row">
-                <button id="toggleSelection">Select/Deselect All</button>
-                <button id="deselectAll">Update Software</button>
-                <button id="restartDevices">Restart Selected Devices</button>
-            </div>
-            <div class="control-row">
-                <button id="showGcodeCommandsBtn">Show GCODE Commands</button>
-                <select id="commandDropdown"></select>
-                <button id="runGcode">Run GCODE</button>
-            </div>
-        <div class="control-row">
-            <button id="fetchGcodeFilesBtn">List GCODE Files</button>
-            <select id="gcodeDropdown"></select>
-            <button id="startPrint">Start Print</button>
-        </div>
-        <div class="control-row">
-            <iframe src="demo_iframe.htm" name="iframe_a" height="100%" width="100%"></iframe>
-            <a href="http://10.1.10.203/webcam/?action=stream" target="iframe_a">Webcam</a>
-        </div>
-        </div>
+        
         
         </div>
         
