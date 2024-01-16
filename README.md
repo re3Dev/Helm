@@ -30,7 +30,6 @@ To start serving the web page, start backend.py by running it or using the comma
 ## Technologies Used
 - Flask
 - Moonraker API
-- Mainsail
 - Klipper firmware
 
 ## Roadmap
