@@ -15,7 +15,7 @@ def get_printer_info(ip, mac, devices_list):
     info_url = f"http://{ip}/printer/info"
     extruder_url = f"http://{ip}/printer/objects/query?gcode_move&toolhead&extruder=target,temperature"
     extruder1_url = f"http://{ip}/printer/objects/query?gcode_move&toolhead&extruder1=target,temperature"
-    heater_bed_url = f"http://{ip}/printer/objects/query?gcode_move&toolhead&heater_bed=target,temperature"
+    heater_bed_url = f"http://{ip}/printer/objects/query?gcode_move&toolhead&extruder2=target,temperature"
     idle_timeout_url = f"http://{ip}/printer/objects/query?idle_timeout"
     
     try:
@@ -39,6 +39,7 @@ def get_printer_info(ip, mac, devices_list):
         r_heater_bed.raise_for_status()
         heater_bed_data = r_heater_bed.json()
 
+
         # Fetching printer state
         r_idle_timeout = requests.get(idle_timeout_url, timeout=3)
         r_idle_timeout.raise_for_status()
@@ -50,9 +51,9 @@ def get_printer_info(ip, mac, devices_list):
 
         software_version = info_data['result']['software_version']
         if software_version.startswith('v0.11'):
-            software_version = 'Current'
+            software_version = info_data['result']['software_version']
         else:
-            software_version = 'Legacy'
+            software_version = info_data['result']['software_version']
 
         state_message = info_data['result']['state_message']
         #if 'mcu' in state_message:
@@ -60,7 +61,7 @@ def get_printer_info(ip, mac, devices_list):
 
         extruder_temperature = extruder_data['result']['status']['extruder']['temperature']
         extruder1_temperature = extruder1_data['result']['status']['extruder1']['temperature']
-        heater_bed_temperature = heater_bed_data['result']['status']['heater_bed']['temperature']
+        heater_bed_temperature = heater_bed_data['result']['status']['extruder2']['temperature']
 
         # Add to the devices list with a lock to ensure thread safety
         with device_list_lock:
@@ -84,7 +85,7 @@ def home():
     return app.send_static_file('index.html')
 @app.route('/devices', methods=['GET'])
 def get_devices():
-    target_ip = "10.1.10.1/24"    #Add your IP range here
+    target_ip = "192.168.7.1/24"    #Add your IP range here
     arp = ARP(pdst=target_ip)
     ether = Ether(dst="ff:ff:ff:ff:ff:ff")
     packet = ether/arp
