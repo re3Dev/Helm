@@ -59,6 +59,5 @@ Open for contributions!
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements
-- Mainsail
-- Klipper
-- Moonraker
+- Klipper Firmware
+- Moonraker API
