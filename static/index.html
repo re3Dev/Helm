@@ -24,15 +24,15 @@
         <thead>
             <tr>
                 <th>SELECT</th>
-                <th>IP</th>
-                <th>MAC</th>
                 <th>HOSTNAME</th>
-                <th>SOFTWARE VERSION</th>
-                <th>STATE MESSAGE</th>
+                <th>IP</th>
                 <th>STATUS</th>
+                <th>STATE MESSAGE</th>
                 <th>BOTTOM HEATER</th>
                 <th>MIDDLE HEATER</th>
                 <th>TOP HEATER</th>
+                <th>SOFTWARE VERSION</th>
+                <th>MAC</th>
             </tr>
         </thead>
         <tbody>
@@ -40,19 +40,25 @@
     </table>
     <div class="flex-container2">
         <div class="control-section">
-            <h2>Software</h2>
+            <h2>File Management</h2>
             <div class="control-row">
-                <button id="executeSSHCommand">Execute SSH Command</button>
-                <div id="terminal-container"></div>
+                <input type="file">
+                <button id="uploadFile">Upload File</button>
+                <button id="removeFile">Remove File</button>
+            <div class="control-row">
+                <button id="fetchGcodeFilesBtn">List GCODE Files</button>
+                <select id="gcodeDropdown"></select>
+                
+            </div>
+                
                 
             </div>
         </div>
         <div class="control-section">
-            <h2>Group Controls</h2>
+            <h2>Commands</h2>
             <div class="control-row">
                 <button id="toggleSelection">Select/Deselect All</button>
-                <button id="deselectAll">Update Software</button>
-                <button id="restartDevices">Restart Selected Devices</button>
+                <button id="restartDevices">FIRMWARE_RESTART</button>
             </div>
             <div class="control-row">
                 <button id="showGcodeCommandsBtn">Show GCODE Commands</button>
@@ -71,18 +77,8 @@
             <h2>Motion</h2>
             <div id="mainContainer">
                 
-                <div id="matrixContainer">
-                    
-                </div>
-                
-                <div id="sliderContainer">
-                    <input type="range" min="0" max="600" value="0" class="slider" id="slider"/>
-                    <span id="sliderValue">0</span>
-                </div>
-                
             </div>
             <button id="homeAllButton">Home All</button>
-            <button id="setZ">Set Z Position</button>
             </div>
         
         

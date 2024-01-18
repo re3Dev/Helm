@@ -10,8 +10,9 @@ CORS(app)
 
 # For thread-safe append to the device list
 device_list_lock = threading.Lock()
+processed_hostnames = set()
 
-def get_printer_info(ip, mac, devices_list):
+def get_printer_info(ip, mac, devices_list, processed_hostnames):
     info_url = f"http://{ip}/printer/info"
     extruder_url = f"http://{ip}/printer/objects/query?gcode_move&toolhead&extruder=target,temperature"
     extruder1_url = f"http://{ip}/printer/objects/query?gcode_move&toolhead&extruder1=target,temperature"
@@ -65,10 +66,13 @@ def get_printer_info(ip, mac, devices_list):
 
         # Add to the devices list with a lock to ensure thread safety
         with device_list_lock:
+            if hostname in processed_hostnames:
+                return
+            processed_hostnames.add(hostname)
             devices_list.append({
+                'hostname': hostname,
                 'ip': ip,
                 'mac': mac,
-                'hostname': hostname,
                 'software_version': software_version,
                 'state_message': state_message,
                 'status': status,
@@ -85,7 +89,7 @@ def home():
     return app.send_static_file('index.html')
 @app.route('/devices', methods=['GET'])
 def get_devices():
-    target_ip = "192.168.7.1/24"    #Add your IP range here
+    target_ip = "10.1.10.1/24"    #Add your IP range here
     arp = ARP(pdst=target_ip)
     ether = Ether(dst="ff:ff:ff:ff:ff:ff")
     packet = ether/arp
@@ -93,12 +97,12 @@ def get_devices():
     result = srp(packet, timeout=3, verbose=0)[0]
 
     devices_list = []
-
+    processed_hostnames = set()
     threads = []
     for sent, received in result:
         ip = received.psrc
         mac = received.hwsrc
-        thread = threading.Thread(target=get_printer_info, args=(ip, mac, devices_list))
+        thread = threading.Thread(target=get_printer_info, args=(ip, mac, devices_list, processed_hostnames))
         thread.start()
         threads.append(thread)
 
@@ -124,20 +128,4 @@ def fetch_gcode_commands():
 if __name__ == '__main__':
     app.run(debug=True)
 
-@app.route('/ssh_command', methods=['POST'])
-def ssh_command():
-    data = request.json
-    hostname = data['hostname']
-    username = data['username']
-    password = data['password']
-    command = data['command']
 
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(hostname, username=username, password=password)
-        stdin, stdout, stderr = ssh.exec_command(command)
-        output = stdout.read()
-        return {'output': output.decode()}
-    except Exception as e:
-        return {'error': str(e)}

@@ -15,7 +15,7 @@ window.onload = function() {
             checkboxCell.appendChild(checkbox);
             row.appendChild(checkboxCell);
         
-            ['ip', 'mac', 'hostname', 'software_version', 'state_message', 'status', 'extruder_temperature', 'extruder1_temperature', 'heater_bed_temperature'].forEach(key => {
+            ['hostname', 'ip', 'status', 'state_message', 'extruder_temperature', 'extruder1_temperature', 'heater_bed_temperature', 'software_version', 'mac'].forEach(key => {
                 const cell = document.createElement('td');
                 
                 if (key === 'ip') {
@@ -125,12 +125,12 @@ function updateSpecifiedColumns(data) {
         let row = table.querySelector(`tr[data-ip="${device.ip}"]`);
 
         if (row) {
-            row.cells[5].textContent = device.state_message;
-            row.cells[7].textContent = device.extruder_temperature;
-            row.cells[8].textContent = device.extruder1_temperature;
-            row.cells[9].textContent = device.heater_bed_temperature;
+            row.cells[4].textContent = device.state_message;
+            row.cells[5].textContent = device.extruder_temperature;
+            row.cells[6].textContent = device.extruder1_temperature;
+            row.cells[7].textContent = device.heater_bed_temperature;
 
-            const statusCell = row.cells[6]; 
+            const statusCell = row.cells[3]; 
             statusCell.classList.remove('status-ready', 'status-idle', 'status-printing'); // Clear previous statuses
             switch (device.status) {
                 case "Ready":
@@ -174,39 +174,7 @@ document.getElementById("fetchGcodeFilesBtn").addEventListener("click", function
         console.error("Error fetching GCode files:", error);
     });
 });
-const terminal = new Terminal();
-terminal.open(document.getElementById('terminal-container'));
 
-document.getElementById('executeSSHCommand').addEventListener('click', function() {
-    const command = 'ifconfig';
-    sendSSHCommand(command);
-});
-
-function sendSSHCommand(command) {
-    const data = {
-        hostname: '',
-        username: '',
-        password: '',
-        command: command
-    };
-
-    fetch('/ssh_command', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.output) {
-            terminal.write(data.output);
-        } else {
-            terminal.write('Error: ' + data.error);
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
 
 function populateDropdown(files) {
     const dropdown = document.getElementById('gcodeDropdown');
