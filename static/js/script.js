@@ -218,10 +218,6 @@ $(document).ready(function() {
             return;
         }
 
-        // Optional: Calculate the checksum of the file (SHA256)
-        // You will need to implement the `calculateChecksum` function or use a library
-        var checksum = calculateChecksum(file); // Implement this function or use a library
-
         $('input[type="checkbox"]:checked').each(function() {
             var deviceId = $(this).val(); // Assuming the value of checkbox is device IP address
             var url = 'http://' + deviceId + '/server/files/upload';
@@ -250,11 +246,32 @@ $(document).ready(function() {
     });
 });
 
-// Implement or include a library for checksum calculation
-function calculateChecksum(file) {
-    // You can use a library like CryptoJS or implement your own SHA256 checksum calculation
-    // Return the checksum as a hex string
-}
+$(document).ready(function() {
+    $('#deleteFileButton').click(function() {
+        var selectedFile = $('#gcodeDropdown').val();
+
+        if (!selectedFile) {
+            alert('No file selected.');
+            return;
+        }
+
+        $('input[type="checkbox"]:checked').each(function() {
+            var deviceId = $(this).val(); // Assuming the value of checkbox is device IP address
+            var url = 'http://' + deviceId + '/server/files/gcodes/' + encodeURIComponent(selectedFile);
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function(data) {
+                    console.log('Deletion succeeded for ' + deviceId + ' (File: ' + selectedFile + ')');
+                },
+                error: function() {
+                    console.log('Deletion failed for ' + deviceId + ' (File: ' + selectedFile + ')');
+                }
+            });
+        });
+    });
+});
 const matrixContainer = document.getElementById('matrixContainer');
 const rowCount = 11;
 const columnCount = 11;
