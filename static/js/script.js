@@ -226,9 +226,7 @@ $(document).ready(function() {
             var formData = new FormData();
             formData.append('file', file);
             formData.append('root', 'gcodes'); // Specify the root directory
-            if (checksum) {
-                formData.append('checksum', checksum); // Add the checksum if calculated
-            }
+            
 
             $.ajax({
                 url: url,
@@ -287,6 +285,32 @@ $(document).ready(function() {
                 },
                 error: function() {
                     console.error('Firmware restart failed for ' + deviceId);
+                }
+            });
+        });
+    });
+});
+$(document).ready(function() {
+    $('#startPrintButton').click(function() {
+        var selectedFile = $('#gcodeDropdown').val();
+
+        if (!selectedFile) {
+            alert('No file selected.');
+            return;
+        }
+
+        $('input[type="checkbox"]:checked').each(function() {
+            var deviceId = $(this).val(); // Assuming the value of checkbox is device IP address
+            var url = 'http://' + deviceId + '/printer/print/start?filename=' + encodeURIComponent(selectedFile);
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function(data) {
+                    console.log('Print started for ' + deviceId + ' (File: ' + selectedFile + ')');
+                },
+                error: function() {
+                    console.error('Failed to start print for ' + deviceId + ' (File: ' + selectedFile + ')');
                 }
             });
         });
