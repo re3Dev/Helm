@@ -240,12 +240,10 @@ $(document).ready(function() {
                 processData: false, // prevent jQuery from converting the data
                 contentType: false, // prevent jQuery from setting content type
                 success: function(data) {
-                    console.log('Upload succeeded for ' + deviceId);
-                    alert('Upload Successful');  
+                    console.log('Upload succeeded for ' + deviceId);  
                 },
                 error: function() {
                     console.log('Upload failed for ' + deviceId);
-                    alert('Upload Failed');
                 }
             });
         });
