@@ -208,6 +208,55 @@ $(document).ready(function() {
         });
     });
 });
+$(document).ready(function() {
+    $('#uploadFileButton').click(function() {
+        var fileInput = document.getElementById('fileInput');
+        var file = fileInput.files[0];
+
+        if (!file) {
+            console.log('No file selected.');
+            return;
+        }
+
+        // Optional: Calculate the checksum of the file (SHA256)
+        // You will need to implement the `calculateChecksum` function or use a library
+        var checksum = calculateChecksum(file); // Implement this function or use a library
+
+        $('input[type="checkbox"]:checked').each(function() {
+            var deviceId = $(this).val(); // Assuming the value of checkbox is device IP address
+            var url = 'http://' + deviceId + '/server/files/upload';
+
+            var formData = new FormData();
+            formData.append('file', file);
+            formData.append('root', 'gcodes'); // Specify the root directory
+            if (checksum) {
+                formData.append('checksum', checksum); // Add the checksum if calculated
+            }
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                processData: false, // prevent jQuery from converting the data
+                contentType: false, // prevent jQuery from setting content type
+                success: function(data) {
+                    console.log('Upload succeeded for ' + deviceId);
+                    alert('Upload Successful');  
+                },
+                error: function() {
+                    console.log('Upload failed for ' + deviceId);
+                    alert('Upload Failed');
+                }
+            });
+        });
+    });
+});
+
+// Implement or include a library for checksum calculation
+function calculateChecksum(file) {
+    // You can use a library like CryptoJS or implement your own SHA256 checksum calculation
+    // Return the checksum as a hex string
+}
 const matrixContainer = document.getElementById('matrixContainer');
 const rowCount = 11;
 const columnCount = 11;
@@ -315,5 +364,5 @@ for (let i = 0; i < 11; i++) {
             });
         });
     });
-
+    
 
