@@ -14,10 +14,10 @@
         <img src="/static/logo.jpg" style="width:115px;height:100px;margin-left: 5px;margin-right: 5px;">
         <!--<h1 style="text-align: right;color: #c40000;">Printers Online: </h1>-->
         <div class="top-nav">
-            <a href="#home" class="nav-link active">Home</a>
-            <a href="#services" class="nav-link">Cameras</a>
-            <a href="#about" class="nav-link">Print Status</a>
-            <a href="#contact" class="nav-link">Statistics</a>
+            <a href="#home" class="nav-link active">(Menu in development)</a>
+            <a href="#services" class="nav-link">Print History</a>
+            <a href="#about" class="nav-link">Statistics</a>
+            <a href="#contact" class="nav-link">Settings</a>
         </div>
     </div>
     <table id="devicesTable" style="width:100%">
@@ -43,24 +43,23 @@
             <h2>File Management</h2>
             <div class="control-row">
                 <input type="file" id="fileInput">
-                <button id="uploadFileButton">Upload to Selected Printers</button>
-                <button id="removeFile">Remove File</button></div>
             <div class="control-row">
                 <button id="fetchGcodeFilesBtn">List GCODE Files</button>
                 <select id="gcodeDropdown"></select>
                 
             </div>
             <div class="control-row">
-                <select id="fileToDeleteDropdown"></select>
-                <button id="deleteFileButton">Delete Selected File from Printers</button>
+                <button id="uploadFileButton">UPLOAD FILE</button>
+                <button id="deleteFileButton">DELETE FILE</button>
                 
             </div>
+        </div>
         </div>
         <div class="control-section">
             <h2>Commands</h2>
             <div class="control-row">
                 <button id="toggleSelection">Select/Deselect All</button>
-                <button id="restartDevices">FIRMWARE_RESTART</button>
+                <button id="firmwareRestartButton">FIRMWARE_RESTART</button>
             </div>
             <div class="control-row">
                 <button id="showGcodeCommandsBtn">Show GCODE Commands</button>

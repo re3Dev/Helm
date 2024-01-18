@@ -215,6 +215,7 @@ $(document).ready(function() {
 
         if (!file) {
             console.log('No file selected.');
+            alert('No file selected.');
             return;
         }
 
@@ -272,112 +273,27 @@ $(document).ready(function() {
         });
     });
 });
-const matrixContainer = document.getElementById('matrixContainer');
-const rowCount = 11;
-const columnCount = 11;
+$(document).ready(function() {
+    $('#firmwareRestartButton').click(function() {
+        $('input[type="checkbox"]:checked').each(function() {
+            var deviceId = $(this).val(); // Assuming the value of checkbox is device IP address
+            var url = 'http://' + deviceId + '/printer/firmware_restart';
 
-// Create a table and append to the matrixContainer
-const table = document.createElement('table');
-matrixContainer.appendChild(table);
-
-for (let i = 0; i < 11; i++) {
-    const tr = document.createElement('tr');
-    for (let j = 0; j < 11; j++) {
-        const td = document.createElement('td');
-        
-        td.className = 'matrix-cell'; // You add the className here
-        
-        td.addEventListener('click', () => {
-            // Resetting color for all cells
-            const matrixCells = document.querySelectorAll('.matrix-cell');
-            matrixCells.forEach(cell => cell.style.backgroundColor = '');
-            
-            // Coloring the clicked cell
-            td.style.backgroundColor = 'red';
-            
-            
-            // Calculate Coordinates
-            const xCoord = j * 59;
-            const yCoord = (10 - i) * 61; // 10 - i, because we are starting from the bottom
-            
-            // Get selected devices
-            const checkboxes = document.querySelectorAll('.device-checkbox:checked');
-            const selectedDevices = Array.from(checkboxes).map(checkbox => checkbox.value);
-            console.log(`Clicked on cell with coordinates (${xCoord}, ${yCoord})`);
-            // If no devices are selected
-            if (selectedDevices.length === 0) {
-                alert('Please select at least one device.');
-                return;
-            }
-            
-            // Send POST request to each selected device
-            selectedDevices.forEach(deviceIP => {
-                const url = `http://${deviceIP}/printer/gcode/script`;
-                const gcodeCommand = `G1 X${xCoord} Y${yCoord} F12000`;
-                
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ script: gcodeCommand }),
-                })
-                .then(response => response.json())
-                .then(data => console.log('Success:', data))
-                .catch((error) => console.error('Error:', error));
-            });
-        });
-
-        tr.appendChild(td);
-    }
-    table.appendChild(tr);
-}
-        
-        
-        
-        // Optionally, display the coordinates inside the cell for reference
-
-    }
-    
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const slider = document.getElementById('slider');
-        const sliderValue = document.getElementById('sliderValue');
-        const setZButton = document.getElementById('setZ');
-    
-        slider.addEventListener('input', function () {
-            sliderValue.textContent = slider.value; // Update the displayed value while sliding
-        });
-    
-        setZButton.addEventListener('click', function () {
-            const finalValue = slider.value;
-            // Get selected devices
-            const checkboxes = document.querySelectorAll('.device-checkbox:checked');
-            const selectedDevices = Array.from(checkboxes).map(checkbox => checkbox.value);
-    
-            // If no devices are selected
-            if (selectedDevices.length === 0) {
-                alert('Please select at least one device.');
-                return;
-            }
-    
-            // Send POST request to each selected device
-            selectedDevices.forEach(deviceIP => {
-                const url = `http://${deviceIP}/printer/gcode/script`;
-                const gcodeCommand = `G1 Z${finalValue}`;
-                
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ script: gcodeCommand }),
-                })
-                .then(response => response.json())
-                .then(data => console.log('Success:', data))
-                .catch((error) => console.error('Error:', error));
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function(data) {
+                    console.log('Firmware restart initiated for ' + deviceId);
+                },
+                error: function() {
+                    console.error('Firmware restart failed for ' + deviceId);
+                }
             });
         });
     });
+});
+}
+    
+
     
 
