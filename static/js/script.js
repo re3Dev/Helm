@@ -316,6 +316,25 @@ $(document).ready(function() {
         });
     });
 });
+$(document).ready(function() {
+    $('#cancelPrintButton').click(function() {
+        $('input[type="checkbox"]:checked').each(function() {
+            var deviceId = $(this).val(); // Assuming the value of checkbox is device IP address
+            var url = 'http://' + deviceId + '/printer/print/cancel';
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function(data) {
+                    console.log('Print cancel request sent for ' + deviceId);
+                },
+                error: function() {
+                    console.error('Failed to send cancel request for ' + deviceId);
+                }
+            });
+        });
+    });
+});
 }
     
 
