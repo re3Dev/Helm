@@ -24,17 +24,7 @@ window.onload = function() {
                     anchorElement.target = '_blank'; 
                     anchorElement.textContent = device[key];
                     cell.appendChild(anchorElement);
-                } else if (key === 'software_version') {
-                    const detailElement = document.createElement('details');
-                    const summaryElement = document.createElement('summary');
-                    summaryElement.textContent = device[key];
-                    detailElement.appendChild(summaryElement);
-            
-                    const moreInfo = document.createElement('p');
-                    moreInfo.textContent = 'More details about ' + key + '...';  // Add your detailed info here.
-                    detailElement.appendChild(moreInfo);
-            
-                    cell.appendChild(detailElement);
+                
                 } else {
                     cell.textContent = device[key];
                 }

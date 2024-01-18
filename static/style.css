@@ -14,6 +14,12 @@ th, td {
     padding: 8px 12px;
     background-color: #1e1e1e; /* Darker background for table cells */
     color: #e1e1e1; /* Light text */
+    
+}
+
+td {
+    border-style: none none solid none;
+    border-color: #c4c4c43f;
 }
 
 th {
@@ -140,7 +146,7 @@ h1, h2, h3 {
 }
 
 #devicesTable a:hover {
-    color: #2980b9;
+    color: #d4e028;
 }
 
 select {
@@ -182,48 +188,4 @@ select {
 
 #matrixContainer td:hover {
     background-color: #ccc;
-}
-
-.slider-container {
-    position: relative;
-    height: 300px; /* Adjust to fit your design */
-    width: 20px;
-    margin-left: 250px; /* Space between the matrix and the slider */
-    float: right;
-}
-
-.slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 300px; /* Matching the height of the slider container */
-    margin: 0;
-    transform-origin: 150px 150px; /* Center of rotation */
-    transform: rotate(90deg) translateX(-150px);
-}
-
-.slider::-webkit-slider-thumb, .slider::-moz-range-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #FFD400;
-    cursor: pointer;
-}
-
-#sliderValue {
-    margin-top: -30px;
-    margin-left: 280px;
-    align-self: center; /* Centers the value horizontally */
-}
-
-#sliderContainer {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#slider {
-    position: relative;
-    top: 170px; /* Adjust as needed */
 }
