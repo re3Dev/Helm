@@ -4,6 +4,18 @@ body {
     color: #e1e1e1; /* Light text */
 }
 
+
+#countContainer {
+    position: fixed; /* Keeps the div fixed during scrolling */
+    top: 10px;  /* Distance from the top of the viewport */
+    right: 10px; /* Distance from the right of the viewport */
+    background-color: #353434; 
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(255, 255, 255);
+    z-index: 1000; /* Ensures the div stays on top of other elements */
+}
+
 table {
     border-collapse: collapse;
     width: 100%;

@@ -35,6 +35,8 @@ window.onload = function() {
         
             tableBody.appendChild(row);
         });
+        const rowCount = tableBody.rows.length;
+        document.getElementById('deviceCount').innerText = `Number of Printers: ${rowCount}`;
     })
     .catch(error => {
         console.error('Error fetching data:', error);
@@ -110,6 +112,7 @@ setInterval(() => {
 
 function updateSpecifiedColumns(data) {
     const table = document.getElementById('devicesTable').querySelector('tbody');
+    let printingCount = 0;
     data.forEach(device => {
         // Use querySelector to find the row by its embedded IP attribute
         let row = table.querySelector(`tr[data-ip="${device.ip}"]`);
@@ -131,12 +134,14 @@ function updateSpecifiedColumns(data) {
                     break;
                 case "Printing":
                     statusCell.classList.add('status-printing');
+                    printingCount++;
                     break;
             }        
       } else {
             console.error(".", device.ip);
         }
     });
+    document.getElementById('printingCount').innerText = `Printing: ${printingCount}`;
 }
 document.getElementById("fetchGcodeFilesBtn").addEventListener("click", function() {
     let checkboxes = document.querySelectorAll(".device-checkbox");
