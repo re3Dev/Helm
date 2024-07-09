@@ -203,6 +203,30 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).ready(function() {
+    $('#gcodeForm').submit(function(e) {
+        e.preventDefault();
+
+        const gcode = $('#gcodeInput').val(); // Get the value from the text input
+
+        // Select all checkboxes that are checked
+        $('input[type="checkbox"]:checked').each(function() {
+            var deviceId = $(this).val(); // Assuming the value of checkbox is device id or IP address
+            var url = 'http://' + deviceId + '/printer/gcode/script?script=' + encodeURIComponent(gcode);
+
+            // Send a POST request to the selected device
+            $.post(url)
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+        });
+    });
+});
+
 $(document).ready(function() {
     $('#uploadFileButton').click(function() {
         var fileInput = document.getElementById('fileInput');
