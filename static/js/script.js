@@ -1,5 +1,7 @@
 window.onload = function() {
-    fetch('http://127.0.0.1:5000/devices')
+    const serverIp = window.location.hostname;
+    const fetchUrl = `http://${serverIp}:5000/devices`;
+    fetch(fetchUrl)
     .then(response => response.json())
     .then(data => {
         const tableBody = document.querySelector('#devicesTable tbody');
