@@ -3,6 +3,10 @@ from scapy.all import ARP, Ether, srp
 from flask_cors import CORS
 import requests
 import threading
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 CORS(app)
