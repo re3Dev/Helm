@@ -318,6 +318,46 @@ window.onload = function() {
     });
 
     $(document).ready(function() {
+        $('#eStopButton').click(function() {
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/emergency_stop';
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    success: function(data) {
+                        console.log('Emergency stop initiated for ' + deviceId);
+                    },
+                    error: function() {
+                        console.error('Emergency stop failed for ' + deviceId);
+                    }
+                });
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('#turnOffHeatersButton').click(function() {
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script?script=TURN_OFF_HEATERS';
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    success: function(data) {
+                        console.log('Heaters turned off for ' + deviceId);
+                    },
+                    error: function() {
+                        console.error('Heaters failed to turn off for ' + deviceId);
+                    }
+                });
+            });
+        });
+    });
+
+    $(document).ready(function() {
         $('#startPrintButton').click(function() {
             var selectedFile = $('#gcodeDropdown').val();
 

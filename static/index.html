@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="refresh" content="300">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
 <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
     <meta charset="UTF-8">
@@ -64,10 +64,12 @@
         </div>
         </div>
         <div class="control-section">
-            <h2>COMMANDS</h2>
+            <h2>COMMANDS
+            <button id="eStopButton" style="color:red">EMERGENCY STOP</button></h2>
             <div class="control-row">
                 <button id="toggleSelection">SELECT/DESELECT ALL</button>
                 <button id="firmwareRestartButton">FIRMWARE_RESTART</button>
+                <button id="turnOffHeatersButton" style="color:lightblue">COOLDOWN</button>
             </div>
             <div class="control-row">
                 <button id="showGcodeCommandsBtn">Show GCODE Commands</button>
