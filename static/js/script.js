@@ -235,6 +235,69 @@ window.onload = function() {
     });
 
     $(document).ready(function() {
+        $('#temp0form').submit(function(e) {
+            e.preventDefault();
+
+            const temp0 = $('#temp0Input').val();
+            const heatCommand0 = "SET_HEATER_TEMPERATURE HEATER=extruder TARGET="
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script?script=' + encodeURIComponent(heatCommand0) + encodeURIComponent(temp0);
+
+                $.post(url)
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('#temp1form').submit(function(e) {
+            e.preventDefault();
+
+            const temp1 = $('#temp1Input').val();
+            const heatCommand1 = "SET_HEATER_TEMPERATURE HEATER=extruder1 TARGET="
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script?script=' + encodeURIComponent(heatCommand1) + encodeURIComponent(temp1);
+
+                $.post(url)
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('#temp2form').submit(function(e) {
+            e.preventDefault();
+
+            const temp2 = $('#temp2Input').val();
+            const heatCommand2 = "SET_HEATER_TEMPERATURE HEATER=extruder2 TARGET="
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script?script=' + encodeURIComponent(heatCommand2) + encodeURIComponent(temp2);
+
+                $.post(url)
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        });
+    });
+
+    $(document).ready(function() {
         $('#uploadFileButton').click(function() {
             var fileInput = document.getElementById('fileInput');
             var file = fileInput.files[0];
