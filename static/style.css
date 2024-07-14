@@ -357,8 +357,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
     border: 1px solid #666; /* Border color */
     padding: 5px; /* Padding for better spacing */
     border-radius: 4px; /* Rounded corners */
-    width: 50px;
-    text-align: center;
+    width: 150px;
+    text-align: left;
     font-size: 14px; /* Font size for text inputs */
     box-sizing: border-box; /* Ensure padding is included in the width */
 }
