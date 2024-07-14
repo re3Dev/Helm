@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
-<script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
@@ -12,7 +11,6 @@
 <body>
     <div class="top">
         <img src="/static/logo.jpg" style="width:115px;height:100px;margin-left: 5px;margin-right: 5px;">
-        <!--<h1 style="text-align: right;color: #c40000;">Printers Online: </h1>-->
         <div class="top-nav">
             <a href="#home" class="nav-link active">(Menu in development)</a>
             <a href="#services" class="nav-link">Print History</a>
@@ -23,8 +21,8 @@
             <div id="deviceCount">Number of Printers: 0</div>
             <div id="printingCount">Printing: 0</div>
         </div>
-        
     </div>
+
     <table id="devicesTable" style="width:100%">
         <thead>
             <tr>
@@ -43,33 +41,55 @@
         <tbody>
         </tbody>
     </table>
+
     <div class="flex-container2">
         <div class="control-section">
             <h2>FILE MANAGEMENT</h2>
             <div class="control-row">
                 <input type="file" id="fileInput">
-                <br><br>
+                <button id="uploadFileButton">UPLOAD FILE</button>
+                <button id="deleteFileButton">DELETE FILE</button>
+            </div>
             <div class="control-row">
                 <button id="fetchGcodeFilesBtn">List GCODE Files</button>
                 <select id="gcodeDropdown"></select>
-                
             </div>
             <div class="control-row">
-                <button id="uploadFileButton">UPLOAD FILE</button>
-                <button id="deleteFileButton">DELETE FILE</button>
                 <button id="startPrintButton">PRINT FILE</button>
                 <button id="cancelPrintButton">CANCEL PRINT (non functional)</button>
-                
-                
             </div>
             <div class="control-row">
                 <p1>CRAMMER_MOVE DISTANCE=500 VELOCITY=365</p1>
             </div>
         </div>
-        </div>
+
         <div class="control-section">
-            <h2>COMMANDS
-            <button id="eStopButton" style="color:red">EMERGENCY STOP</button></h2>
+            <h2>MOTION</h2>
+            <div class="motion-control">
+                <div class="axis-control">
+                    <button class="arrow-btn" id="x-minus">◄</button>
+                    <button class="arrow-btn" id="x-plus">►</button>
+                    <input type="number" id="x-value" placeholder="X" class="axis-input">
+                    <button id="homeXButton">HOME X AXIS</button>
+                </div>
+                <div class="axis-control">
+                    <button class="arrow-btn" id="y-minus">▼</button>
+                    <button class="arrow-btn" id="y-plus">▲</button>
+                    <input type="number" id="y-value" placeholder="Y" class="axis-input">
+                    <button id="homeYButton">HOME Y AXIS</button>
+                </div>
+                <div class="axis-control">
+                    <button class="arrow-btn" id="z-minus">▼</button>
+                    <button class="arrow-btn" id="z-plus">▲</button>
+                    <input type="number" id="z-value" placeholder="Z" class="axis-input">
+                    <button id="homeZButton">HOME Z AXIS</button>
+                </div>
+                <button id="homeAllButton">HOME ALL</button>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h2>COMMANDS <button id="eStopButton" style="color:red">EMERGENCY STOP</button></h2>
             <div class="control-row">
                 <button id="toggleSelection">SELECT/DESELECT ALL</button>
                 <button id="firmwareRestartButton">FIRMWARE_RESTART</button>
@@ -80,54 +100,39 @@
                 <select id="commandDropdown"></select>
                 <button id="runGcode">RUN COMMAND</button>
             </div>
-        <div class="control-row">
-            <form id="gcodeForm">
-                <input type="text" id="gcodeInput" style="width:500px; height: 50px" placeholder="Enter G-code command">
-                <button type="submit">Send to Printers</button>
-            </form>
-            
-        </div>
-        <div class="control-row">
-            <form id="temp0form">
-                <input type="text" id="temp0Input">
-                <button type="submit">T0</button>
-            </form>
-        </div>
-        <div class="control-row">
-            <form id="temp1form">
-                <input type="text" id="temp1Input">
-                <button type="submit">T1</button>
-            </form>
-        </div>
-        <div class="control-row">
-            <form id="temp2form">
-                <input type="text" id="temp2Input">
-                <button type="submit">T2</button>
-            </form>
-        </div>
+            <div class="control-row">
+                <form id="gcodeForm">
+                    <input type="text" id="gcodeInput" style="width:500px; height: 50px" placeholder="Enter G-code command">
+                    <button type="submit">Send to Printers</button>
+                </form>
+            </div>
+            <div class="control-row">
+                <form id="temp0form">
+                    <input type="text" id="temp0Input">
+                    <button type="submit">T0</button>
+                </form>
+            </div>
+            <div class="control-row">
+                <form id="temp1form">
+                    <input type="text" id="temp1Input">
+                    <button type="submit">T1</button>
+                </form>
+            </div>
+            <div class="control-row">
+                <form id="temp2form">
+                    <input type="text" id="temp2Input">
+                    <button type="submit">T2</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="flex-container">
-        <div class="control-section">
-            <h2>MOTION</h2>
-            <div id="mainContainer">
-                
-            </div>
-            <button id="homeAllButton">HOME ALL</button>
-            </div>
-        
-        
-        </div>
-        
+
     <div id="gcodeCommandsContainer">
         <h3></h3>
-        <ul id="gcodeOutput">
-        </ul>
+        <ul id="gcodeOutput"></ul>
     </div>
-    <script
-  src="https://code.jquery.com/jquery-3.7.0.js"
-  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-  crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="/static/js/script.js"></script>
 </body>
 </html>

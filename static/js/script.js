@@ -13,8 +13,14 @@ window.onload = function() {
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.className = 'device-checkbox';  
-            checkbox.value = device.ip; 
+            checkbox.value = device.ip;
+            checkbox.id = `checkbox_${device.ip}`;  // Add an ID to the checkbox
+            
+            const label = document.createElement('label');
+            label.htmlFor = `checkbox_${device.ip}`;  // Create a corresponding label
+
             checkboxCell.appendChild(checkbox);
+            checkboxCell.appendChild(label);  // Append the label after the checkbox
             row.appendChild(checkboxCell);
         
             ['hostname', 'ip', 'status', 'state_message', 'extruder_temperature', 'extruder1_temperature', 'heater_bed_temperature', 'software_version', 'mac', 'last_gcode_command'].forEach(key => {

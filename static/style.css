@@ -1,18 +1,19 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Dark background */
+    background-color: #2E2F37; /* Dark background */
     color: #e1e1e1; /* Light text */
+    margin: 0;
+    padding: 0;
 }
-
 
 #countContainer {
     position: fixed; /* Keeps the div fixed during scrolling */
     top: 10px;  /* Distance from the top of the viewport */
     right: 10px; /* Distance from the right of the viewport */
-    background-color: #353434; 
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgb(255, 255, 255);
+    background-color: #1E1E24; 
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     z-index: 1000; /* Ensures the div stays on top of other elements */
 }
 
@@ -20,24 +21,26 @@ table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 10px;
+    background-color: #2A2B32;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 th, td {
-    padding: 8px 12px;
-    background-color: #1e1e1e; /* Darker background for table cells */
+    padding: 12px;
+    background-color: #2A2B32; /* Darker background for table cells */
     color: #e1e1e1; /* Light text */
-    
 }
 
 td {
-    border-style: none none solid none;
-    border-color: #c4c4c43f;
+    border-bottom: 1px solid #444;
 }
 
 th {
     background-color: #333; /* Darker header */
     color: #ffdc2d; /* Contrast color for header text */
-    border-radius: 10px;
+    border-bottom: 2px solid #555;
+    text-transform: uppercase; /* Make header text uppercase */
 }
 
 tr:hover {
@@ -47,10 +50,10 @@ tr:hover {
 .clickable {
     cursor: pointer;
     display: inline-block;
-    padding: 2px 10px;
+    padding: 8px 16px;
     margin: 2px;
     border: 1px solid #555;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: #4a4a4a;
     transition: background-color 0.3s;
 }
@@ -62,7 +65,7 @@ tr:hover {
 .detail-info {
     display: none;
     margin-top: 5px;
-    padding: 5px;
+    padding: 10px;
     border-top: 1px solid #444;
 }
 
@@ -70,14 +73,15 @@ tr:hover {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    gap: 20px;
 }
 
 .control-section {
     flex: 1;
-    margin-right: 10px;
-    background: linear-gradient(to left, #3a3a3a, #222020);
-    padding: 10px;
-    border-radius: 5px;
+    background: #1E1E24;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .control-row {
@@ -107,6 +111,14 @@ button:hover {
     background-color: #444; /* Hover effect */
 }
 
+button#eStopButton {
+    color: #ff4c4c; /* Red color for emergency stop */
+}
+
+button#turnOffHeatersButton {
+    color: #4cbfff; /* Light blue color for cooldown */
+}
+
 h1, h2, h3 {
     border-bottom: 2px solid #555;
     padding-bottom: 10px;
@@ -114,28 +126,27 @@ h1, h2, h3 {
 }
 
 .top {
-    background: rgb(0, 0, 0); /* Dark top bar */
-    padding: 0px 0;
-    margin-bottom: 0px;
-    border-bottom: 1px solid #999999;
-    margin-left: 0px;
-    margin-right: 0px;
-    display: inline-flex;
+    background: #1E1E24; /* Dark top bar */
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
     width: 100%;
 }
+
 .top-nav {
-    background-color: #333; /* Dark background for the nav bar */
+    background-color: #2A2B32; /* Dark background for the nav bar */
     display: flex; /* Use flexbox */
     justify-content: space-around; /* Space out items */
     align-items: center; /* Align items vertically */
     overflow: hidden;
-    padding: 0 10px; /* Add some padding on the sides */
+    padding: 0 20px; /* Add some padding on the sides */
+    border-radius: 10px;
 }
 
 .nav-link {
     color: #f2f2f2; /* Light color for the text */
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 20px;
     text-decoration: none;
     font-size: 17px;
     transition: 0.3s;
@@ -147,7 +158,7 @@ h1, h2, h3 {
 }
 
 .nav-link.active {
-    background-color: #555; /* Different background for the active link */
+    background-color: #ff4c4c; /* Red background for the active link */
     color: white;
 }
 
@@ -167,13 +178,13 @@ select {
     -moz-appearance: none;
     border: none;
     outline: none;
+    width: 100%;
 }
 
 #commandDropdown, #gcodeDropdown {
     font-family: 'Arial', sans-serif;
     font-size: 16px;
     padding: 10px;
-    width: 250px;
     background-color: #333;
     color: #ddd;
     border: 1px solid #666;
@@ -200,4 +211,152 @@ select {
 
 #matrixContainer td:hover {
     background-color: #ccc;
+}
+
+input[type="text"] {
+    background-color: #333; /* Dark background */
+    color: #ddd; /* Light text color */
+    border: 1px solid #666; /* Border color */
+    padding: 10px; /* Padding for better spacing */
+    border-radius: 4px; /* Rounded corners */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition effects */
+    font-size: 14px; /* Font size for text inputs */
+    width: 100px; /* Full width */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+input[type="text"]::placeholder {
+    color: #888; /* Placeholder text color */
+}
+
+input[type="text"]:focus {
+    border-color: #ffdc2d; /* Border color on focus */
+    box-shadow: 0 0 5px rgba(255, 76, 76, 0.5); /* Box shadow on focus */
+    outline: none; /* Remove default outline */
+}
+
+input[type="file"] {
+    background-color: #333; /* Dark background */
+    color: #ddd; /* Light text color */
+    border: 1px solid #666; /* Border color */
+    padding: 10px; /* Padding for better spacing */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition effects */
+    font-size: 14px; /* Font size for text inputs */
+    width: auto; /* Auto width to keep it independent */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #444; /* Button background */
+    color: #ddd; /* Button text color */
+    border: 1px solid #666; /* Button border */
+    padding: 10px; /* Button padding */
+    border-radius: 4px; /* Button rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition effects */
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #555; /* Button background on hover */
+    border-color: #ffdc2d; /* Button border on hover */
+}
+/* Hide default checkbox */
+.device-checkbox {
+    display: none;
+}
+
+/* Create custom checkbox appearance */
+.device-checkbox + label {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 25px;
+    color: #e1e1e1;
+    vertical-align: middle; /* Align the label vertically */
+}
+
+.device-checkbox + label:before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #666;
+    border-radius: 3px;
+    background-color: #333;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Center the checkbox vertically */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.device-checkbox:checked + label:before {
+    background-color: #ffdc2d;
+    border-color: #ffdc2d;
+}
+
+.device-checkbox + label:after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background: transparent;
+    transform: translateY(-50%); /* Center the checkmark vertically */
+    transition: background-color 0.3s;
+}
+
+.device-checkbox:checked + label:after {
+    background: #fff;
+}
+
+/* Optional: Change appearance on hover */
+.device-checkbox + label:hover:before {
+    border-color: #ffdc2d;
+}
+/* Motion control styles */
+.motion-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.axis-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.arrow-btn {
+    background-color: #333; /* Dark button background */
+    color: #e1e1e1; /* Light text */
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.arrow-btn:hover {
+    background-color: #444; /* Hover effect */
+}
+
+.axis-input {
+    background-color: #333; /* Dark background */
+    color: #ddd; /* Light text color */
+    border: 1px solid #666; /* Border color */
+    padding: 5px; /* Padding for better spacing */
+    border-radius: 4px; /* Rounded corners */
+    width: 100px;
+    text-align: left;
+    font-size: 14px; /* Font size for text inputs */
+    box-sizing: border-box; /* Ensure padding is included in the width */
 }
