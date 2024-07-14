@@ -68,25 +68,32 @@
             <div class="motion-control">
                 <div class="axis-control">
                     <button class="arrow-btn" id="x-minus">◄</button>
-                    <button class="arrow-btn" id="x-plus">►</button>
                     <input type="number" id="x-value" placeholder="X" class="axis-input">
-                    <button id="homeXButton">Home X Axis</button>
+                    <button class="arrow-btn" id="x-plus">►</button>
+                    <button class="home-btn" id="home-x">Home X Axis</button>
                 </div>
                 <div class="axis-control">
                     <button class="arrow-btn" id="y-minus">▼</button>
-                    <button class="arrow-btn" id="y-plus">▲</button>
                     <input type="number" id="y-value" placeholder="Y" class="axis-input">
-                    <button id="homeYButton">Home Y Axis</button>
+                    <button class="arrow-btn" id="y-plus">▲</button>
+                    <button class="home-btn" id="home-y">Home Y Axis</button>
                 </div>
                 <div class="axis-control">
                     <button class="arrow-btn" id="z-minus">▼</button>
-                    <button class="arrow-btn" id="z-plus">▲</button>
                     <input type="number" id="z-value" placeholder="Z" class="axis-input">
-                    <button id="homeZButton">Home Z Axis</button>
+                    <button class="arrow-btn" id="z-plus">▲</button>
+                    <button class="home-btn" id="home-z">Home Z Axis</button>
+                </div>
+                <div class="increment-bar">
+                    <input type="range" id="increment-range" min="0" max="50" value="0" step="10">
+                    <div class="increment-labels">
+                        <span>1</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span>
+                    </div>
                 </div>
                 <button id="homeAllButton">HOME ALL</button>
             </div>
         </div>
+        
 
         <div class="control-section">
             <h2>COMMANDS <button id="eStopButton" style="color:red">EMERGENCY STOP</button></h2>

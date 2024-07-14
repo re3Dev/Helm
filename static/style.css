@@ -329,6 +329,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
     display: flex;
     align-items: center;
     gap: 5px;
+    width: 100%;
+    justify-content: center;
 }
 
 .arrow-btn {
@@ -355,8 +357,93 @@ input[type="file"]::-webkit-file-upload-button:hover {
     border: 1px solid #666; /* Border color */
     padding: 5px; /* Padding for better spacing */
     border-radius: 4px; /* Rounded corners */
-    width: 100px;
-    text-align: left;
+    width: 50px;
+    text-align: center;
     font-size: 14px; /* Font size for text inputs */
     box-sizing: border-box; /* Ensure padding is included in the width */
 }
+
+.home-btn {
+    background-color: #333; /* Dark button background */
+    color: #e1e1e1; /* Light text */
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.home-btn:hover {
+    background-color: #444; /* Hover effect */
+}
+
+/* Increment bar styles */
+.increment-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.increment-bar input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, #ff4c4c 0%, #ff4c4c 0%, #ffdc2d 100%);
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.increment-bar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #444;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.increment-bar input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #444;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.increment-bar input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #444;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.increment-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px;
+    color: #ddd;
+    margin-top: 5px;
+}
+
+.increment-labels span {
+    flex: 1;
+    text-align: center;
+}
+
+
