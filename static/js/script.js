@@ -201,7 +201,7 @@ window.onload = function() {
             dropdown.appendChild(option);
         });
     }
-
+// home all
     $(document).ready(function() {
         $('#homeAllButton').click(function() {
             $('input[type="checkbox"]:checked').each(function() {
@@ -218,7 +218,7 @@ window.onload = function() {
             });
         });
     });
-
+//send custom gcode
     $(document).ready(function() {
         $('#gcodeForm').submit(function(e) {
             e.preventDefault();
@@ -239,7 +239,7 @@ window.onload = function() {
             });
         });
     });
-
+//bottom heater temp
     $(document).ready(function() {
         $('#temp0form').submit(function(e) {
             e.preventDefault();
@@ -260,7 +260,7 @@ window.onload = function() {
             });
         });
     });
-
+//middle heater temp
     $(document).ready(function() {
         $('#temp1form').submit(function(e) {
             e.preventDefault();
@@ -281,7 +281,7 @@ window.onload = function() {
             });
         });
     });
-
+//top heater temp
     $(document).ready(function() {
         $('#temp2form').submit(function(e) {
             e.preventDefault();
@@ -302,7 +302,7 @@ window.onload = function() {
             });
         });
     });
-
+//upload file
     $(document).ready(function() {
         $('#uploadFileButton').click(function() {
             var fileInput = document.getElementById('fileInput');
@@ -338,7 +338,7 @@ window.onload = function() {
             });
         });
     });
-
+//delete file
     $(document).ready(function() {
         $('#deleteFileButton').click(function() {
             var selectedFile = $('#gcodeDropdown').val();
@@ -365,7 +365,7 @@ window.onload = function() {
             });
         });
     });
-
+//firmware restart
     $(document).ready(function() {
         $('#firmwareRestartButton').click(function() {
             $('input[type="checkbox"]:checked').each(function() {
@@ -385,7 +385,7 @@ window.onload = function() {
             });
         });
     });
-
+//emergency stop
     $(document).ready(function() {
         $('#eStopButton').click(function() {
             $('input[type="checkbox"]:checked').each(function() {
@@ -405,7 +405,7 @@ window.onload = function() {
             });
         });
     });
-
+//cooldown
     $(document).ready(function() {
         $('#turnOffHeatersButton').click(function() {
             $('input[type="checkbox"]:checked').each(function() {
@@ -425,7 +425,7 @@ window.onload = function() {
             });
         });
     });
-
+//start print
     $(document).ready(function() {
         $('#startPrintButton').click(function() {
             var selectedFile = $('#gcodeDropdown').val();
@@ -452,7 +452,7 @@ window.onload = function() {
             });
         });
     });
-
+//cancel print
     $(document).ready(function() {
         $('#cancelPrintButton').click(function() {
             $('input[type="checkbox"]:checked').each(function() {
