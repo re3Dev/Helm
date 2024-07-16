@@ -302,6 +302,88 @@ window.onload = function() {
             });
         });
     });
+//X movement
+    $(document).ready(function() {
+        function submitValue() {
+            const x_value = $('#x-value').val();
+            const x_command = "G1 X";
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script?script=' + encodeURIComponent(x_command) + encodeURIComponent(x_value);
+    
+                $.post(url)
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        }
+    
+        // Capture Enter keypress event on X movement field
+        $('#x-value').keypress(function(e) {
+            if (e.which === 13) { // 13 is the Enter key code
+                e.preventDefault();
+                submitValue();
+            }
+        });
+    });
+//Y movement
+    $(document).ready(function() {
+        function submitValue() {
+            const y_value = $('#y-value').val();
+            const y_command = "G1 Y";
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script?script=' + encodeURIComponent(y_command) + encodeURIComponent(y_value);
+    
+                $.post(url)
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        }
+    
+        // Capture Enter keypress event on Y movement field
+        $('#y-value').keypress(function(e) {
+            if (e.which === 13) { 
+                e.preventDefault();
+                submitValue();
+            }
+        });
+    });
+//Z movement
+    $(document).ready(function() {
+        function submitValue() {
+            const z_value = $('#z-value').val();
+            const z_command = "G1 Z";
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script?script=' + encodeURIComponent(z_command) + encodeURIComponent(z_value);
+    
+                $.post(url)
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        }
+    
+        // Capture Enter keypress event on Z movement field
+        $('#z-value').keypress(function(e) {
+            if (e.which === 13) { 
+                e.preventDefault();
+                submitValue();
+            }
+        });
+    });
+    
 //upload file
     $(document).ready(function() {
         $('#uploadFileButton').click(function() {
