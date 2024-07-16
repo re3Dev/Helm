@@ -6,6 +6,7 @@
 
 ## Table of Contents
 - [Overview](#overview)
+- [Features](#overview)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
@@ -17,13 +18,30 @@
 ## Overview
 Helm works on top of other open source software, namely Klipper firmware with the Mainsail front-end, and leverages the Moonraker API to monitor and control multiple machines all at once through a single web page.
 
+## Features
+- Server hosted on local network for multiple clients
+- Local network scanning for automatic connection to printers
+- Status monitoring
+- Display hostname, ip address, firmware version
+- Dynamic monitoring of status, state message, temperatures, and command response
+- Multi-printer selection for command execution
+- File upload/deletion
+- Start/stop prints
+- List gcode files on a particular machine
+- List commands
+- Send gcode commands
+- Set temperatures
+- Cooldown heaters
+- Firmware restart
+- Emergency stop
+
 ## Installation
 You will need to have python3 installed, along with the flask library.
 
 Most likely, you will need to change the target IP range. It is located in backend.py in the get_devices() function:
 target_ip = "10.1.10.1/24"
 
-To start serving the web page, start backend.py by running it or using the command line. The page will be served at http://127.0.0.1:5000
+To start serving the web page, start backend.py by running it or using the command line. The page will be served at http://127.0.0.1:5000 or http://{host_ip}:5000
 ## Usage
 
 
