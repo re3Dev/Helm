@@ -92,7 +92,7 @@ def home():
     return app.send_static_file('index.html')
 @app.route('/devices', methods=['GET'])
 def get_devices():
-    target_ip = "192.168.7.1/24"    #Add your IP range here
+    target_ip = "192.168.1.1/24"    #Add your IP range here
     arp = ARP(pdst=target_ip)
     ether = Ether(dst="ff:ff:ff:ff:ff:ff")
     packet = ether/arp

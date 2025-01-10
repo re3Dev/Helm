@@ -218,6 +218,57 @@ window.onload = function() {
             });
         });
     });
+//home X
+    $(document).ready(function() {
+        $('#home-x').click(function() {
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script';
+
+                $.post(url, { script: 'G28 X' })
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        });
+    });
+//home Y
+    $(document).ready(function() {
+        $('#home-y').click(function() {
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script';
+
+                $.post(url, { script: 'G28 Y' })
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        });
+    });
+//home Z
+    $(document).ready(function() {
+        $('#home-z').click(function() {
+            $('input[type="checkbox"]:checked').each(function() {
+                var deviceId = $(this).val();
+                var url = 'http://' + deviceId + '/printer/gcode/script';
+
+                $.post(url, { script: 'G28 Z' })
+                .done(function(data) {
+                    console.log('Request succeeded for ' + deviceId);
+                })
+                .fail(function() {
+                    console.log('Request failed for ' + deviceId);
+                });
+            });
+        });
+    });
 //send custom gcode
     $(document).ready(function() {
         $('#gcodeForm').submit(function(e) {
