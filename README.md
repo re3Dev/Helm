@@ -1,5 +1,5 @@
 
-# This Repository has moved to: https://github.com/re3Dev/helm-vite
+# This repository is deprecated and current work has moved to: https://github.com/re3Dev/helm-vite
 # HELM - Web application for multiple 3D-printers
 
 
